@@ -15,8 +15,8 @@ Headers:
 
 Body:
 {
-  "txnId": "TXN123456789",
-  "amount": 1000,
+  "txnId": 987654321238800,
+  "amount": 100,
   "name": "John Doe",
   "email": "john@example.com",
   "mobileNumber": "9876543210"
@@ -29,11 +29,18 @@ Body:
   "message": "intent generate successfully",
   "qr_intent": "upi://pay?pa=merchant@upi&pn=Merchant&tn=Payment&am=1000",
   "qr_image": "base64_encoded_qr_image",
-  "transaction_id": "TXN123456789"
+  "transaction_id": 987654321238800
+}
+  
+// Fail Response
+{
+  "status": "Failed",
+  "status_code": 400,
+  "message": "message"
 }`,
 
         checkStatus: `// Request
-GET /api/payin/status/TXN123456789
+GET /api/v1/payment/status/:txnId
 Headers:
   Authorization: Bearer <your_jwt_token>
 

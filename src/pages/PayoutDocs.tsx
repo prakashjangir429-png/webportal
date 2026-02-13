@@ -8,15 +8,17 @@ export default function PayoutAPIDocs() {
 
   const codeExamples = {
     initiatePayout: `// Request
-POST /api/payout/initiate
+POST /api/v1/payments/initiate
 Headers:
   Authorization: Bearer <your_jwt_token>
   Content-Type: application/json
 
 Body:
 {
-  "txnId": "PYT123456789",
-  "amount": 1000,
+  "trxId": 9876543234567,
+  "amount": 100,
+  "mobileNumber":9637410888,
+  "bankName":"State bank of india",
   "accountNumber": "1234567890",
   "ifscCode": "ABCD0123456",
   "accountHolderName": "John Doe",
@@ -25,16 +27,22 @@ Body:
 
 // Success Response
 {
-  "status": "Success",
+  "status": "Pending",
   "status_code": 200,
   "message": "Payout initiated successfully",
-  "transaction_id": "PYT123456789",
-  "utr": null, // Will be updated in callback
-  "status": "Processing"
+  "transaction_id": "9876543234567",
+  "accountNumber":"1234567890",
+  "amount":100
+}
+  // Fail Response
+{
+  "status": "Failed",
+  "status_code": 400,
+  "message": "message"
 }`,
 
     checkStatus: `// Request
-GET /api/payout/status/PYT123456789
+GET /api/v1/payments/status/9876543234567
 Headers:
   Authorization: Bearer <your_jwt_token>
 
@@ -44,21 +52,21 @@ Headers:
   "status_code": 200,
   "message": "Transaction details fetched",
   "data": {
-    "txnId": "PYT123456789",
+    "txnId": "9876543234567",
     "amount": 1000,
     "chargeAmount": 15,
     "netAmount": 985,
     "accountNumber": "1234567890",
     "accountHolderName": "John Doe",
     "ifscCode": "ABCD0123456",
-    "status": "Completed",
+    "status": "Success",
     "utr": "UTR123456789012",
     "initiatedAt": "2023-08-15T10:30:00.000Z",
     "completedAt": "2023-08-15T10:35:00.000Z"
   }
 }`,
 
-    callbackSuccess: `// Successful Payout Callback (POST to your callback URL)
+callbackSuccess: `// Successful Payout Callback (POST to your callback URL)
 {
   "event": "payout_success",
   "txnId": "PYT123456789",
@@ -73,7 +81,7 @@ Headers:
   "message": "Payout processed successfully"
 }`,
 
-    callbackFailed: `// Failed Payout Callback (POST to your callback URL)
+callbackFailed: `// Failed Payout Callback (POST to your callback URL)
 {
   "event": "payout_failed",
   "txnId": "PYT123456789",
@@ -120,7 +128,7 @@ Headers:
                 <pre className="overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-gray-700">
                   {`Authorization: Bearer <your_jwt_token>`}
                 </pre>
-                <button 
+                <button
                   onClick={() => copyToClipboard("Authorization: Bearer <your_jwt_token>")}
                   className="mt-2 rounded bg-indigo-600 px-3 py-1 text-sm text-white"
                 >
@@ -133,11 +141,11 @@ Headers:
           {/* API Endpoints */}
           <div>
             <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">API Endpoints</h3>
-            
+
             <div className="mb-4 flex space-x-4 border-b border-gray-200 dark:border-gray-700">
               <Button
-                                               size='sm'
-                                variant={`${activeTab === 'initiate' ? 'primary' : 'outline'}`}
+                size='sm'
+                variant={`${activeTab === 'initiate' ? 'primary' : 'outline'}`}
                 onClick={() => setActiveTab('initiate')}
               >
                 Initiate Payout
@@ -164,7 +172,7 @@ Headers:
                   <pre className="overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-gray-700">
                     {codeExamples.initiatePayout}
                   </pre>
-                  <button 
+                  <button
                     onClick={() => copyToClipboard(codeExamples.initiatePayout)}
                     className="mt-2 rounded bg-indigo-600 px-3 py-1 text-sm text-white"
                   >
@@ -178,7 +186,7 @@ Headers:
                   <pre className="overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-gray-700">
                     {codeExamples.checkStatus}
                   </pre>
-                  <button 
+                  <button
                     onClick={() => copyToClipboard(codeExamples.checkStatus)}
                     className="mt-2 rounded bg-indigo-600 px-3 py-1 text-sm text-white"
                   >
@@ -194,7 +202,7 @@ Headers:
                     <pre className="overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-gray-700">
                       {codeExamples.callbackSuccess}
                     </pre>
-                    <button 
+                    <button
                       onClick={() => copyToClipboard(codeExamples.callbackSuccess)}
                       className="mt-2 rounded bg-indigo-600 px-3 py-1 text-sm text-white"
                     >
@@ -207,7 +215,7 @@ Headers:
                     <pre className="overflow-x-auto rounded-md bg-gray-100 p-4 text-sm dark:bg-gray-700">
                       {codeExamples.callbackFailed}
                     </pre>
-                    <button 
+                    <button
                       onClick={() => copyToClipboard(codeExamples.callbackFailed)}
                       className="mt-2 rounded bg-indigo-600 px-3 py-1 text-sm text-white"
                     >

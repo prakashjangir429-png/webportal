@@ -82,7 +82,7 @@ export default function APICredentials() {
                             <h4 className="mt-6">2. How to use the token</h4>
                             <p>Include the generated JWT token in the Authorization header of your requests:</p>
                             <pre className="rounded-md bg-gray-100 p-3 dark:bg-gray-800">
-                                {`Authorization: ${'your_generated_jwt_token_here'}`}
+                                {`Authorization: Bearer ${'your_generated_jwt_token_here'}`}
                             </pre>
 
                             <h4 className="mt-6">3. Node.js Example</h4>
@@ -100,10 +100,10 @@ const token = jwt.sign(
 );
 
 Make API request
-const response = await fetch('https://your-api-endpoint.com', {
+const response = await fetch('https://your-api-endpoint', {
   method: 'GET',
   headers: {
-    'Authorization': token,
+    'Authorization': Bearer token,
     'Content-Type': 'application/json'
   }
 });`}

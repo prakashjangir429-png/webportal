@@ -91,7 +91,6 @@ const AppHeader: React.FC = () => {
               src="./images/logo/logo.png"
               alt="Logo"
               height={60}
-
             />
             <img
               className="hidden dark:block h-12"

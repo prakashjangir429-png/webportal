@@ -83,10 +83,10 @@ export default function UserMetaCard({ user }: any) {
                 {user?.fullName || "User"}
               </h4>
               <div className="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                {/* <p className="text-sm text-gray-500 dark:text-gray-400">
                   {user?.role || "User"}
-                </p>
-                <div className="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"></div>
+                </p> */}
+                {/* <div className="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"></div> */}
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {user?.address?.city}, {user?.address?.country}
                 </p>
@@ -103,7 +103,7 @@ export default function UserMetaCard({ user }: any) {
                 </div> */}
               </div>
             </div>
-            <div className="flex items-center order-2 gap-2 grow xl:order-3 xl:justify-end">
+            {/* <div className="flex items-center order-2 gap-2 grow xl:order-3 xl:justify-end">
               <a
                 href={`mailto:${user?.email}`}
                 target="_blank"
@@ -148,9 +148,9 @@ export default function UserMetaCard({ user }: any) {
                   />
                 </svg>
               </a>
-            </div>
+            </div> */}
           </div>
-          <button
+          {/* <button
             onClick={openModal}
             className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
           >
@@ -170,7 +170,7 @@ export default function UserMetaCard({ user }: any) {
               />
             </svg>
             Edit
-          </button>
+          </button> */}
         </div>
       </div>
 

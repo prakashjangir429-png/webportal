@@ -62,20 +62,19 @@ export default function App() {
               <Route path="/credential" element={< APICredentials />} />
               <Route path="/mainwallet/report" element={<WalletTransactions />} />
               <Route path="/ewallet/report" element={<EWalletTransactions />} />
-              <Route path="/payin/report" element={<PayinRecords model={"report"}/>} />
-              <Route path="/payin/success" element={<PayinRecords model={"success"}/>} />
+              <Route path="/payin/report" element={<PayinRecords model={"report"} />} />
+              <Route path="/payin/success" element={<PayinRecords model={"success"} />} />
               <Route path="/payout/report" element={<PayoutReports model={"Payout"} />} />
               <Route path="/settlements" element={<PayoutReports model={"Settlements"} />} />
               <Route path="/chargeback" element={<ChargebacksTable />} />
-              <Route path="/settings" element={<SettingsPage />} />
 
               <Route path="/callbackurls" element={<CallbackUrls />} />
               <Route path="/ipwhitelist" element={<IpWhitelist />} />
               <Route path="/docs/payin" element={<PayInAPIDocs />} />
               <Route path="/docs/payout" element={<PayoutAPIDocs />} />
               <Route path="/docs/balance-inquiry" element={<BalanceEnquiryDocs />} />
-              <Route path="/query" element={<CreateQuery/>} />
-              <Route path="/queries" element={<QueryList/>} />
+              <Route path="/query" element={<CreateQuery />} />
+              <Route path="/queries" element={<QueryList />} />
               <Route path="/queries/:id" element={<QueryDetail />} />
 
 
@@ -88,7 +87,7 @@ export default function App() {
                 <Route path="/etomain" element={<EWalletToMainWalletSettlement />} />
                 <Route path="/settlement" element={<EWalletToBankSettlement />} />
                 <Route path="/maintoEwallet" element={<MainWalletToEWalletTransfer />} />
-
+                <Route path="/settings" element={<SettingsPage />} />
               </Route>
               <Route element={<ProtectedRoute roles={[ROLES.ADMIN, ROLES.EDITOR]} />}>
               </Route>

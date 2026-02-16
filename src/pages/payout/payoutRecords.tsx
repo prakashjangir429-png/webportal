@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import Analytics from "../Charts/Analytics";
 import { useAuth } from "../../context/UserContext";
 
-const PayoutReports = ({model}:any) => {
+const PayoutReports = ({ model }: any) => {
     const [reports, setReports] = useState([]);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const PayoutReports = ({model}:any) => {
 
     useEffect(() => {
         fetchReports();
-    }, [filters,model]);
+    }, [filters, model]);
 
     useEffect(() => {
         if (user.role === "Admin") fetchUsers();
@@ -61,7 +61,7 @@ const PayoutReports = ({model}:any) => {
                 ...filters,
                 exportCsv: false
             };
-            const response = await api.get( model == 'Settlements' ? `/report/settlements` : `/report/payout/reports`, { params });
+            const response = await api.get(model == 'Settlements' ? `/report/settlements` : `/report/payout/reports`, { params });
             setReports(response.data?.data);
             setStats(response.data?.stats);
             setTotal(response.data?.pagination?.total);
@@ -240,48 +240,49 @@ const PayoutReports = ({model}:any) => {
                     </div>
 
                     {/* Amount Range Filters */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Min Amount
-                        </label>
-                        <input
-                            type="number"
-                            name="minAmount"
-                            value={filters.minAmount}
-                            onChange={handleFilterChange}
-                            placeholder="Minimum amount"
-                            className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                        />
-                    </div>
+                    {user.role !== "User" && <>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Min Amount
+                            </label>
+                            <input
+                                type="number"
+                                name="minAmount"
+                                value={filters.minAmount}
+                                onChange={handleFilterChange}
+                                placeholder="Minimum amount"
+                                className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                            />
+                        </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Max Amount
-                        </label>
-                        <input
-                            type="number"
-                            name="maxAmount"
-                            value={filters.maxAmount}
-                            onChange={handleFilterChange}
-                            placeholder="Maximum amount"
-                            className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                        />
-                    </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Max Amount
+                            </label>
+                            <input
+                                type="number"
+                                name="maxAmount"
+                                value={filters.maxAmount}
+                                onChange={handleFilterChange}
+                                placeholder="Maximum amount"
+                                className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                            />
+                        </div>
 
-                    {/* Search Filter */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Search (Trx ID, Account, UTR, IFSC)
-                        </label>
-                        <input
-                            type="text"
-                            name="search"
-                            value={filters.search}
-                            onChange={handleFilterChange}
-                            placeholder="Search reports..."
-                            className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                        />
-                    </div>
+                        {/* Search Filter */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Search (Trx ID, Account, UTR, IFSC)
+                            </label>
+                            <input
+                                type="text"
+                                name="search"
+                                value={filters.search}
+                                onChange={handleFilterChange}
+                                placeholder="Search reports..."
+                                className="w-full rounded-md border border-gray-300 bg-white py-2 px-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                            />
+                        </div> </>}
                 </div>
 
                 {/* Actions Section */}
@@ -312,12 +313,14 @@ const PayoutReports = ({model}:any) => {
                     </div>
 
                     <div className="flex gap-4">
-                        <button
-                            onClick={() => setIsAnalyticsOpen(true)}
-                            className="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-                        >
-                            View Analytics
-                        </button>
+                        {user.role == "Admin" &&
+                            <button
+                                onClick={() => setIsAnalyticsOpen(true)}
+                                className="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                            >
+                                View Analytics
+                            </button>
+                        }
                         <button
                             onClick={handleExportCSV}
                             className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-indigo-700 dark:hover:bg-indigo-800"

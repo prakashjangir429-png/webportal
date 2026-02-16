@@ -26,10 +26,6 @@ const WalletAnalytics = () => {
     fetchAnalytics();
   }, [timeRange]);
 
-  // Time range options
-  const rangeOptions = [
-    { value: '3d', label: 'Last 3 Days' },
-  ];
 
   // Chart options for wallet balances
   const balanceChartOptions = {
@@ -157,11 +153,6 @@ const WalletAnalytics = () => {
       ? ((analytics?.totalEWalletBalance || 0) < 0 || (analytics?.totalMainWalletBalance || 0) < 0)
       : ((analytics?.eWalletBalance || 0) < 0 || (analytics?.mainWalletBalance || 0) < 0);
 
-  const renderLoader = () => (
-    <div className="flex justify-center items-center h-64">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
-    </div>
-  );
 
   const renderBalanceCard = (title, value, icon, color) => {
     const isNegative = value < 0;
@@ -376,7 +367,7 @@ const WalletAnalytics = () => {
                   { label: 'Credit Count', value: analytics?.ewalletTransactions?.creditCount || 0 },
                   { label: 'Total Debits', value: analytics?.ewalletTransactions?.debitAmount || 0 },
                   { label: 'Debit Count', value: analytics?.ewalletTransactions?.debitCount || 0 },
-                  { label: 'Total Charges', value: analytics?.ewalletTransactions?.totalCharges || 0 }
+                  // { label: 'Total Charges', value: analytics?.ewalletTransactions?.totalCharges || 0 }
                 ].map((item, index) => (
                   <div key={index} className="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">
                     <span className="text-gray-600 dark:text-gray-300">{item.label}</span>
@@ -405,7 +396,7 @@ const WalletAnalytics = () => {
                   { label: 'Credit Count', value: analytics?.mainWalletTransactions?.creditCount || 0 },
                   { label: 'Total Debits', value: analytics?.mainWalletTransactions?.debitAmount || 0 },
                   { label: 'Debit Count', value: analytics?.mainWalletTransactions?.debitCount || 0 },
-                  { label: 'Total Charges', value: analytics?.mainWalletTransactions?.totalCharges || 0 }
+                  // { label: 'Total Charges', value: analytics?.mainWalletTransactions?.totalCharges || 0 }
                 ].map((item, index) => (
                   <div key={index} className="flex justify-between items-center p-3 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700">
                     <span className="text-gray-600 dark:text-gray-300">{item.label}</span>

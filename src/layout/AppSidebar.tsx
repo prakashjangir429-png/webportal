@@ -103,11 +103,11 @@ const navItemsUser: NavItem[] = [
     name: "User Credential",
     path: "/credential",
   },
-  {
-    icon: <TableIcon />,
-    name: "Main Wallet Report",
-    path: "/mainwallet/report",
-  },
+  // {
+  //   icon: <TableIcon />,
+  //   name: "Main Wallet Report",
+  //   path: "/mainwallet/report",
+  // },
   {
     icon: <TableIcon />,
     name: "Ewallet Report",
@@ -117,9 +117,9 @@ const navItemsUser: NavItem[] = [
     name: "Reports",
     icon: <PageIcon />,
     subItems: [
-      { name: "Payin Generated", path: "/payin/report" },
-      { name: "Payin Success", path: "/payin/success" },
-      { name: "Payout Records", path: "/payout/report" }
+      { name: "Payin Report", path: "/payin/report" },
+      // { name: "Payin Success", path: "/payin/success" },
+      { name: "Payout Report", path: "/payout/report" }
     ],
   },
   {
@@ -137,19 +137,12 @@ const navItemsUser: NavItem[] = [
 ];
 
 const othersItems: NavItem[] = [
-  {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
-  },
-  {
-    name: "Support Ticket",
-    icon: <PageIcon />,
-    subItems: [
-      { name: "Create Ticket", path: "/query" },
-      { name: "View Tickets", path: "/queries" }
-    ],
-  },
+  // {
+  //   icon: <UserCircleIcon />,
+  //   name: "User Profile",
+  //   path: "/profile",
+  // },
+
   {
     icon: <PieChartIcon />,
     name: "Developer Section",
@@ -167,10 +160,18 @@ const othersItems: NavItem[] = [
       { name: "Balance inquiry", path: "/docs/balance-inquiry" },
     ],
   },
+    {
+    name: "Support",
+    icon: <PageIcon />,
+    subItems: [
+      { name: "Create Ticket", path: "/query" },
+      { name: "View Tickets", path: "/queries" }
+    ],
+  },
   {
     icon: <LockIcon />,
     name: "Settings",
-    path: "/settings",
+    path: "/profile",
   }
 ];
 

@@ -9,6 +9,7 @@ import api from "../../axiosInstance";
 import { toast } from "react-toastify";
 import Analytics from "../Charts/Analytics";
 import { useAuth } from "../../context/UserContext";
+import { RecycleIcon } from "lucide-react";
 
 const PayoutReports = ({ model }: any) => {
     const [reports, setReports] = useState([]);
@@ -20,6 +21,7 @@ const PayoutReports = ({ model }: any) => {
     const [stats, setStats] = useState();
     const [selectedReport, setSelectedReport] = useState(null);
     const { isOpen, openModal, closeModal } = useModal();
+    const [buttonLoading, setButtonLoading] = useState(false);
     const [filters, setFilters] = useState({
         page: 1,
         limit: 10,
@@ -269,7 +271,6 @@ const PayoutReports = ({ model }: any) => {
                             />
                         </div>
 
-                        {/* Search Filter */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                                 Search (Trx ID, Account, UTR, IFSC)
@@ -438,13 +439,38 @@ const PayoutReports = ({ model }: any) => {
                                                     {report.status}
                                                 </span>
                                             </td>
-                                            <td className="whitespace-nowrap px-2 py-4 text-sm font-medium text-gray-900 dark:text-white">
+                                            <td className="whitespace-nowrap flex items-center gap-4 justify-center px-2 py-4 text-sm font-medium text-gray-900 dark:text-white">
                                                 <button
                                                     onClick={() => viewReportDetails(report)}
                                                     className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300"
                                                 >
-                                                    View Details
+                                                    View
                                                 </button>
+                                                {user.role === "Admin" &&
+                                                    <button
+                                                        disabled={report.status == "Failed" || report.status == "Success" || buttonLoading}
+                                                        onClick={async () => {
+                                                            setButtonLoading(true);
+                                                            try {
+                                                                const response = await api.put(`/payments/update_status/${report.trxId}`);
+                                                                alert(JSON.stringify(response.data))
+                                                            } catch (error) {
+                                                                alert(JSON.stringify(error) || "Error updating status");
+                                                            } finally {
+                                                                setButtonLoading(false);
+                                                            }
+
+                                                        }}
+                                                        className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300"
+                                                    >
+                                                        {!buttonLoading ? (
+                                                            <RecycleIcon className="h-5 w-5" />
+                                                        ) : (
+                                                            <span className="flex items-center">
+                                                                <RecycleIcon className="h-5 w-5 animate-spin" />
+                                                            </span>
+                                                        )}
+                                                    </button>}
                                             </td>
                                         </tr>
                                     ))

@@ -21,7 +21,7 @@ export default function AuthLayout({
                 <img
                   width={220}
                   height={100}
-                  src="/images/logo/logo.png"
+                  src="https://www.mandlal.shop/logo.png"
                   alt="Logo"
                 />
               </Link>

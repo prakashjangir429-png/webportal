@@ -63,7 +63,7 @@ const SelfWalletTopUp = () => {
                     name: data.name,
                     email: data.email,
                     mobileNumber: data.mobile,
-                    redirectUrl: window.location.origin,
+                    redirectUrl: "https://www.mandlal.shop/thank-you",
                     purpose: data.purpose,
                 },
                 {

@@ -26,7 +26,7 @@ export default function AuthLayout({
                 />
               </Link>
               <p className="text-center text-xl text-gray-400 dark:text-white/60">
-                India's largest Payment Gateway
+                India's largest trending Company
               </p>
             </div>
           </div>

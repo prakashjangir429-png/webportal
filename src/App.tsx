@@ -33,6 +33,7 @@ import ChargebacksTable from "./pages/Tables/ChargeBacks";
 import SettingsPage from "./pages/OtherPage/Settings";
 import BalanceEnquiryDocs from "./pages/BalanceDocs";
 import SignUp from "./pages/AuthPages/SignUp";
+import TopUpWallet from "./pages/topupWallet";
 
 // Define roles
 export const ROLES = {
@@ -70,13 +71,14 @@ export default function App() {
 
               <Route path="/callbackurls" element={<CallbackUrls />} />
               <Route path="/ipwhitelist" element={<IpWhitelist />} />
+              <Route path="/topup" element={<TopUpWallet />} />
+
               <Route path="/docs/payin" element={<PayInAPIDocs />} />
               <Route path="/docs/payout" element={<PayoutAPIDocs />} />
               <Route path="/docs/balance-inquiry" element={<BalanceEnquiryDocs />} />
               <Route path="/query" element={<CreateQuery />} />
               <Route path="/queries" element={<QueryList />} />
               <Route path="/queries/:id" element={<QueryDetail />} />
-
 
               <Route element={<ProtectedRoute roles={[ROLES.ADMIN]} />}>
                 <Route path="/payin/apis" element={<PayInApisTable />} />

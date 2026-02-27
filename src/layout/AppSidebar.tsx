@@ -19,6 +19,7 @@ import {
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import { useAuth } from "../context/UserContext";
+import { Wallet2Icon } from "lucide-react";
 
 type NavItem = {
   name: string;
@@ -67,6 +68,11 @@ const navItems: NavItem[] = [
       { name: "Main->E Settlement", path: "/maintoEwallet" },
     ]
   },
+    {
+    icon: <Wallet2Icon />,
+    name: "Payment link",
+    path: "/topup",
+  },
   {
     icon: <PlugInIcon />,
     name: "ChargeBack Reports",
@@ -112,6 +118,11 @@ const navItemsUser: NavItem[] = [
     icon: <TableIcon />,
     name: "Ewallet Report",
     path: "/ewallet/report",
+  },
+  {
+    icon: <Wallet2Icon />,
+    name: "Payment link",
+    path: "/topup",
   },
   {
     name: "Reports",
@@ -160,7 +171,7 @@ const othersItems: NavItem[] = [
       { name: "Balance inquiry", path: "/docs/balance-inquiry" },
     ],
   },
-    {
+  {
     name: "Support",
     icon: <PageIcon />,
     subItems: [

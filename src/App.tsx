@@ -4,7 +4,6 @@ import { ProtectedRoute, AuthRoute } from "./components/RouteGaurds";
 import SignIn from "./pages/AuthPages/SignIn";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
-
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";

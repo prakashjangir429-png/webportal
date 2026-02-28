@@ -49,8 +49,8 @@ const SelfWalletTopUp = () => {
             setIsLoading(true);
 
             const tokenResponse = await api.get("/auth/api_token");
-            let token =tokenResponse.data.token
-            if(!token) {
+            let token = tokenResponse.data.token
+            if (!token) {
                 throw new Error("Token not found");
             }
             const txnId = `TXN_${Date.now()}`;
@@ -63,7 +63,7 @@ const SelfWalletTopUp = () => {
                     name: data.name,
                     email: data.email,
                     mobileNumber: data.mobile,
-                    redirectUrl: "https://www.mandlal.shop/thank-you",
+                    redirectUrl: "https://merchant.mandlal.shop",
                     purpose: data.purpose,
                 },
                 {
@@ -77,7 +77,7 @@ const SelfWalletTopUp = () => {
             if (response.data.status === "Success") {
                 toast.success("Redirecting to payment gateway...");
                 setTimeout(() => {
-                    window.location.href = response.data.qr_intent;
+                    window.location.href = `https://www.mandlal.shop?url=${encodeURIComponent(response.data.qr_intent)}`
                 }, 500);
             } else {
                 toast.error(response.data.message || "Failed to generate payment link");
@@ -251,8 +251,8 @@ const SelfWalletTopUp = () => {
                                         type="button"
                                         onClick={() => handleSuggestedAmount(amount)}
                                         className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${watchAmount === amount
-                                                ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200"
-                                                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                            ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200"
+                                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                                             }`}
                                     >
                                         ₹{amount.toLocaleString()}
@@ -311,8 +311,8 @@ const SelfWalletTopUp = () => {
                             type="submit"
                             disabled={isLoading}
                             className={`w-full py-2.5 rounded-xl font-semibold text-white transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center space-x-2 ${isLoading
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-200"
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-200"
                                 }`}
                         >
                             {isLoading ? (

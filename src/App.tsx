@@ -4,7 +4,6 @@ import { ProtectedRoute, AuthRoute } from "./components/RouteGaurds";
 import SignIn from "./pages/AuthPages/SignIn";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
-
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
@@ -33,6 +32,7 @@ import ChargebacksTable from "./pages/Tables/ChargeBacks";
 import SettingsPage from "./pages/OtherPage/Settings";
 import BalanceEnquiryDocs from "./pages/BalanceDocs";
 import SignUp from "./pages/AuthPages/SignUp";
+import TopUpWallet from "./pages/topupWallet";
 
 // Define roles
 export const ROLES = {
@@ -52,6 +52,8 @@ export default function App() {
         <Routes>
           <Route element={<AuthRoute />}>
             <Route path="/signin" element={<SignIn />} />
+
+            
             <Route path="/forgot-password" element={<SignUp />} />
           </Route>
 
@@ -70,13 +72,14 @@ export default function App() {
 
               <Route path="/callbackurls" element={<CallbackUrls />} />
               <Route path="/ipwhitelist" element={<IpWhitelist />} />
+              <Route path="/topup" element={<TopUpWallet />} />
+
               <Route path="/docs/payin" element={<PayInAPIDocs />} />
               <Route path="/docs/payout" element={<PayoutAPIDocs />} />
               <Route path="/docs/balance-inquiry" element={<BalanceEnquiryDocs />} />
               <Route path="/query" element={<CreateQuery />} />
               <Route path="/queries" element={<QueryList />} />
               <Route path="/queries/:id" element={<QueryDetail />} />
-
 
               <Route element={<ProtectedRoute roles={[ROLES.ADMIN]} />}>
                 <Route path="/payin/apis" element={<PayInApisTable />} />

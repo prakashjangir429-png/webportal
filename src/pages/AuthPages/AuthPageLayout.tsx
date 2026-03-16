@@ -21,12 +21,12 @@ export default function AuthLayout({
                 <img
                   width={220}
                   height={100}
-                  src="/images/logo/logo.png"
+                  src="https://www.mandlal.shop/logo.png"
                   alt="Logo"
                 />
               </Link>
               <p className="text-center text-xl text-gray-400 dark:text-white/60">
-                India's largest Payment Gateway
+                India's largest trending Company
               </p>
             </div>
           </div>

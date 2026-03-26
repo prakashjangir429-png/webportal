@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://payments-le28.onrender.com/api/v1', // Replace with your API base URL
+  baseURL: 'https://api.rasokart.in/api/v1', // Replace with your API base URL
   // baseURL: 'http://localhost:3030/api/v1', // Replace with your API base URL
   // baseURL:'https://mypanel-cmnj.onrender.com/api/v1',
   headers: {
